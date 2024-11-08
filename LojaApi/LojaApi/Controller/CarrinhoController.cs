@@ -19,7 +19,7 @@ namespace LojaApi.Controller
     
 
         // GET api/<CarrinhoController>/5
-        [HttpGet("{id}")]
+        [HttpGet("Mostra-item")]
         public async Task<IActionResult> ListarItens()
         {
             var carrinho = await _carrinhoRepositorys.ListarItens();
@@ -27,7 +27,7 @@ namespace LojaApi.Controller
         }
 
         // POST api/<CarrinhoController>
-        [HttpPost]
+        [HttpPost("Cadastra-item")]
         public async Task<IActionResult> RegistrarProduto([FromBody] Carrinho carrinho)
         {
             return Ok(carrinho);
@@ -35,7 +35,7 @@ namespace LojaApi.Controller
         }
 
         // DELETE api/<CarrinhoController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("Recebe-id-e-Deleta")]
         public async Task<IActionResult> ExcluirItem(int id)
         {
             try
@@ -49,8 +49,8 @@ namespace LojaApi.Controller
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarLivro(int id, [FromBody] Carrinho carrinho)
+        [HttpPut("Atualiza-item")]
+        public async Task<IActionResult> AtualizarItem(int id, [FromBody] Carrinho carrinho)
         {
             carrinho.Id = id;
             await _carrinhoRepositorys.AtualizarLivroDB(carrinho);

@@ -29,7 +29,7 @@ namespace LojaApi.Controller
         }
 
         // DELETE api/<ProdutosController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("deleta-produto")]
         public async Task<IActionResult> ExcluirProduto(int id)
         {
             try

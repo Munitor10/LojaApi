@@ -17,7 +17,7 @@ namespace LojaApi.Controller
         }
 
         // GET: api/<GerenciadorController>
-        [HttpGet]
+        [HttpGet("lista")]
         public async Task<IActionResult> ListarPedidos()
         {
             var pedidos = await _gerenciamentoRepository.ListarPedidos();

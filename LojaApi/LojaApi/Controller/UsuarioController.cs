@@ -17,7 +17,7 @@ namespace LojaApi.Controller
         }
 
         // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
+        [HttpGet("lista-usuario")]
         public async Task<IActionResult> ListarUsuariosDB()
         {
             var usuario = await _usuarioRepository.ListarUsuariosDB();
@@ -25,7 +25,7 @@ namespace LojaApi.Controller
         }
 
         // POST api/<ValuesController>
-        [HttpPost]
+        [HttpPost("registra-usuario")]
         public async Task<IActionResult> PostRegistrarUsuario()
         {
             var usuarios = await _usuarioRepository.ListarUsuariosDB();
