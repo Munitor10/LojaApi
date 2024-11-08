@@ -1,0 +1,62 @@
+﻿using LojaApi.Models;
+using LojaApi.Repositorys;
+using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace LojaApi.Controller
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CarrinhoController : ControllerBase
+    {
+        private readonly CarrinhoRepositorys _carrinhoRepositorys;
+
+        public CarrinhoController(CarrinhoRepositorys usuarioRepository)
+        {
+            _carrinhoRepositorys = usuarioRepository;
+        }
+    
+
+        // GET api/<CarrinhoController>/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ListarItens()
+        {
+            var carrinho = await _carrinhoRepositorys.ListarItens();
+            return Ok(carrinho);
+        }
+
+        // POST api/<CarrinhoController>
+        [HttpPost]
+        public async Task<IActionResult> RegistrarProduto([FromBody] Carrinho carrinho)
+        {
+            return Ok(carrinho);
+
+        }
+
+        // DELETE api/<CarrinhoController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> ExcluirItem(int id)
+        {
+            try
+            {
+                await _carrinhoRepositorys.ExcluirItem(id);
+                return Ok(new { mensagem = "item excruido" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarLivro(int id, [FromBody] Carrinho carrinho)
+        {
+            carrinho.Id = id;
+            await _carrinhoRepositorys.AtualizarLivroDB(carrinho);
+
+            return Ok(new { mensagem = "Item atualizado" });
+        }
+
+    }
+}
